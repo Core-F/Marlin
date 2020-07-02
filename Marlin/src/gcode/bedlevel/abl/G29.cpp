@@ -551,13 +551,16 @@ G29_TYPE GcodeSuite::G29() {
 
         const float newz = measured_z + zoffset;
         z_values[meshCount.x][meshCount.y] = newz;
-        #if ENABLED(EXTENSIBLE_UI)
-          ExtUI::onMeshUpdate(meshCount, newz);
-        #endif
+
+        
+
+#if ENABLED(EXTENSIBLE_UI)
+        ExtUI::onMeshUpdate(meshCount, newz);
+#endif
 
         if (DEBUGGING(LEVELING)) DEBUG_ECHOLNPAIR_P(PSTR("Save X"), meshCount.x, SP_Y_STR, meshCount.y, SP_Z_STR, measured_z + zoffset);
 
-      #endif
+#endif
     }
 
     //
@@ -703,6 +706,8 @@ G29_TYPE GcodeSuite::G29() {
           #endif
 
           measured_z = faux ? 0.001f * random(-100, 101) : probe.probe_at_point(probePos, raise_after, verbose_level);
+
+          if (verbose_level) SERIAL_ECHOLNPAIR("Mesh point probed, z distance measured:  ", measured_z);
 
           if (isnan(measured_z)) {
             set_bed_leveling_enabled(abl_should_enable);
