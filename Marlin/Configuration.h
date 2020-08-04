@@ -496,8 +496,8 @@
 //#define SLOW_PWM_HEATERS      // PWM with very low frequency (roughly 0.125Hz=8s) and minimum state time of approximately 1s useful for heaters driven by a relay
 //#define PID_PARAMS_PER_HOTEND // Uses separate PID parameters for each extruder (useful for mismatched extruders)
 // Set/get with gcode: M301 E[extruder number, 0-2]
-#define PID_FUNCTIONAL_RANGE 10 // If the temperature difference between the target temperature and the actual temperature \
-                                // is more than PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
+#define PID_FUNCTIONAL_RANGE 10 // If the temperature difference between the target temperature and the actual temperature 
+// is more than PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
 
 // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 // Hemera
@@ -752,27 +752,18 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT \
-  {                                 \
-    80, 80, 400, 400                \
-  }
+#define DEFAULT_AXIS_STEPS_PER_UNIT { 80, 80, 400, 416}
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE \
-  {                          \
-    500, 500, 5, 25          \
-  }
+#define DEFAULT_MAX_FEEDRATE  { 500, 500, 5, 25 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
-#define MAX_FEEDRATE_EDIT_VALUES \
-  {                              \
-    600, 600, 10, 50             \
-  } // ...or, set your own edit limits
+#define MAX_FEEDRATE_EDIT_VALUES { 600, 600, 10, 50} // ...or, set your own edit limits
 #endif
 
 /**
@@ -781,16 +772,11 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION \
-    500, 500, 100, 5000          \
-  }
+#define DEFAULT_MAX_ACCELERATION { 500, 500, 100, 5000}
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
-#define MAX_ACCEL_EDIT_VALUES \
-  {                           \
-    6000, 6000, 200, 20000    \
-  } // ...or, set your own edit limits
+#define MAX_ACCEL_EDIT_VALUES { 6000, 6000, 200, 20000} // ...or, set your own edit limits
 #endif
 
 /**
@@ -823,10 +809,7 @@
 
 //#define LIMITED_JERK_EDITING        // Limit edit via M205 or LCD to DEFAULT_aJERK * 2
 #if ENABLED(LIMITED_JERK_EDITING)
-#define MAX_JERK_EDIT_VALUES \
-  {                          \
-    20, 20, 0.6, 10          \
-  } // ...or, set your own edit limits
+#define MAX_JERK_EDIT_VALUES { 20, 20, 0.6, 10} // ...or, set your own edit limits
 #endif
 #endif
 
@@ -997,10 +980,7 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#define NOZZLE_TO_PROBE_OFFSET \
-  {                            \
-    -52, -4, -2.55             \
-  }
+#define NOZZLE_TO_PROBE_OFFSET { -52, -4, -2.55}
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1024,7 +1004,7 @@
  * A total of 2 does fast/slow probes with a weighted average.
  * A total of 3 or more adds more slow probes, taking the average.
  */
-//#define MULTIPLE_PROBING 2
+#define MULTIPLE_PROBING 2
 //#define EXTRA_PROBING    1
 
 /**
@@ -1041,7 +1021,7 @@
  * Example: `M851 Z-5` with a CLEARANCE of 4  =>  9mm from bed to nozzle.
  *     But: `M851 Z+1` with a CLEARANCE of 2  =>  2mm from bed to nozzle.
  */
-#define Z_CLEARANCE_DEPLOY_PROBE 10  // Z Clearance for Deploy/Stow
+#define Z_CLEARANCE_DEPLOY_PROBE 8  // Z Clearance for Deploy/Stow
 #define Z_CLEARANCE_BETWEEN_PROBES 5 // Z Clearance between probe points
 #define Z_CLEARANCE_MULTI_PROBE 5    // Z Clearance between multiple probes
 //#define Z_AFTER_PROBING           5 // Z position after probing is done
@@ -1249,21 +1229,21 @@
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
 //#define AUTO_BED_LEVELING_BILINEAR
-//#define AUTO_BED_LEVELING_UBL
+#define AUTO_BED_LEVELING_UBL
 //#define MESH_BED_LEVELING
 
 /**
  * Normally G28 leaves leveling disabled on completion. Enable
  * this option to have G28 restore the prior leveling state.
  */
-//#define RESTORE_LEVELING_AFTER_G28
+#define RESTORE_LEVELING_AFTER_G28
 
 /**
  * Enable detailed logging of G28, G29, M48, etc.
  * Turn on with the command 'M111 S32'.
  * NOTE: Requires a lot of PROGMEM!
  */
-//#define DEBUG_LEVELING_FEATURE
+#define DEBUG_LEVELING_FEATURE
 
 #if ANY(MESH_BED_LEVELING, AUTO_BED_LEVELING_BILINEAR, AUTO_BED_LEVELING_UBL)
 // Gradually reduce leveling correction until a set height is reached,
@@ -1328,7 +1308,7 @@
 //#define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
 
 #define MESH_INSET 1         // Set Mesh bounds as an inset region of the bed
-#define GRID_MAX_POINTS_X 10 // Don't use more than 15 points per axis, implementation limited.
+#define GRID_MAX_POINTS_X 15 // Don't use more than 15 points per axis, implementation limited.
 #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
 #define UBL_MESH_EDIT_MOVES_Z   // Sophisticated users prefer no movement of nozzle
@@ -1367,10 +1347,7 @@
 //#define LEVEL_BED_CORNERS
 
 #if ENABLED(LEVEL_BED_CORNERS)
-#define LEVEL_CORNERS_INSET_LFRB \
-  {                              \
-    30, 30, 30, 30               \
-  }                              // (mm) Left, Front, Right, Back insets
+#define LEVEL_CORNERS_INSET_LFRB { 30, 30, 30, 30} // (mm) Left, Front, Right, Back insets
 #define LEVEL_CORNERS_HEIGHT 0.0 // (mm) Z height of nozzle at leveling points
 #define LEVEL_CORNERS_Z_HOP 4.0  // (mm) Z height of nozzle between leveling points
 //#define LEVEL_CENTER_TOO              // Move to the center after the last corner
@@ -1410,8 +1387,8 @@
 #endif
 
 // Homing speeds (mm/m)
-#define HOMING_FEEDRATE_XY (20 * 60)
-#define HOMING_FEEDRATE_Z (4 * 60)
+#define HOMING_FEEDRATE_XY (30 * 60)
+#define HOMING_FEEDRATE_Z (12 * 60)
 
 // Validate that endstops are triggered on homing moves
 //#define VALIDATE_HOMING_ENDSTOPS
@@ -1543,10 +1520,7 @@
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
 // Specify a park position as { X, Y, Z_raise }
-#define NOZZLE_PARK_POINT                  \
-  {                                        \
-    (X_MIN_POS + 10), (Y_MAX_POS - 10), 20 \
-  }
+#define NOZZLE_PARK_POINT { (X_MIN_POS + 10), (Y_MAX_POS - 10), 20 }
 #define NOZZLE_PARK_XY_FEEDRATE 100 // (mm/s) X and Y axes feedrate (also used for delta Z axis)
 #define NOZZLE_PARK_Z_FEEDRATE 5    // (mm/s) Z axis feedrate (not used for delta printers)
 #endif
